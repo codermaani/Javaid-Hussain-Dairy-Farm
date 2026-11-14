@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Javaid Traders</title>
+<style>
+:root{--bg:#f2f7fd;--card:#fff;--tx:#071F45;--mu:#5b6f8e;--bd:#d8e3f1;--pr:#087DE0;--prt:#fff;--ac:#00A8E8;--wn:#d98200;--gr:#16895a;--rd:#d13b3b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#071F45;--card:#0d2b5a;--tx:#ffffff;--mu:#9db5d6;--bd:#1d4378;--pr:#00A8E8;--prt:#071F45;--ac:#00A8E8;--wn:#ffb347;--gr:#3fcb8b;--rd:#ff7a7a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#071F45;--card:#0d2b5a;--tx:#ffffff;--mu:#9db5d6;--bd:#1d4378;--pr:#00A8E8;--prt:#071F45;--ac:#00A8E8;--wn:#ffb347;--gr:#3fcb8b;--rd:#ff7a7a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:76px}
+header{padding:16px 16px 8px}
+h1{margin:0;font-size:22px}h1 span{color:var(--pr)}
+button:not(.s):not(.chip):not(nav button){background:linear-gradient(135deg,#087DE0,#00A8E8);color:#fff}
+.sub{color:var(--mu);font-size:13px}
+main{padding:8px 14px 20px;max-width:760px;margin:auto}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:10px 0}
+h2{font-size:17px;margin:4px 0 10px}
+label{display:block;font-size:13px;color:var(--mu);margin:10px 0 4px}
+input,select{width:100%;padding:11px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.row{display:flex;gap:8px}.row>*{flex:1}
+button{font:inherit;border:0;border-radius:10px;padding:12px 14px;background:var(--pr);color:var(--prt);font-weight:600;cursor:pointer;width:100%;margin-top:14px}
+button.s{background:transparent;color:var(--mu);border:1px solid var(--bd);width:auto;margin:0;padding:6px 10px;font-size:13px;font-weight:500}
+button.s.red{color:var(--rd);border-color:var(--rd)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{background:none;color:var(--mu);margin:0;border-radius:0;padding:10px 2px;font-size:12px;font-weight:500;flex:1}
+nav button.on{color:var(--pr);font-weight:700}
+nav i{display:block;font-style:normal;font-size:20px}
+.item{border-top:1px solid var(--bd);padding:10px 0;display:flex;justify-content:space-between;gap:10px}
+.item:first-of-type{border-top:0}
+.item b{display:block}.m{color:var(--mu);font-size:13px}
+.amt{font-weight:700;white-space:nowrap;text-align:right}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chip{padding:7px 12px;border:1px solid var(--bd);border-radius:20px;background:var(--card);color:var(--tx);font-size:14px;width:auto;margin:0;font-weight:500}
+.chip.on{background:var(--pr);color:var(--prt);border-color:var(--pr)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.cols{display:block}
+@media (max-width:420px){.chip{padding:7px 9px;font-size:13px}.chips{gap:5px}.stat .v{font-size:17px}main{padding-left:10px;padding-right:10px}}
+button:hover{filter:brightness(1.06)}
+@media (min-width:900px){
+body{padding-bottom:0;padding-left:220px;font-size:16px}
+header{position:fixed;top:0;left:0;width:220px;padding:22px 18px 10px;z-index:2}
+nav{top:0;right:auto;bottom:0;width:220px;flex-direction:column;border-top:0;border-right:1px solid var(--bd);padding:100px 12px 0;gap:4px}
+nav button{display:flex;align-items:center;gap:12px;text-align:left;padding:12px 14px;font-size:15px;border-radius:10px;flex:0 0 auto}
+nav i{display:inline;font-size:18px}
+nav button.on{background:var(--bg)}
+main{max-width:1100px;padding:28px 32px 40px;margin:0 auto}
+.cols{display:grid;grid-template-columns:minmax(320px,400px) 1fr;gap:18px;align-items:start}
+.cols>.card{margin:0}
+.card{padding:18px}
+.chips{margin-top:4px}
+}
+@media (min-width:1300px){main{max-width:1240px}.cols{grid-template-columns:420px 1fr}}
+.stat{background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:12px}
+.stat .v{font-size:19px;font-weight:700}
+.g{color:var(--gr)}.r{color:var(--rd)}
+.tag{font-size:11px;padding:2px 7px;border-radius:10px;border:1px solid var(--bd);color:var(--mu);margin-left:4px}
+.empty{color:var(--mu);text-align:center;padding:14px}
+.tot{margin-top:10px;font-weight:700;text-align:right}
+a.back{color:var(--pr);cursor:pointer;font-weight:600;display:inline-block;margin:8px 0}
+nav button{position:relative}
+.dot{position:absolute;top:3px;left:calc(50% + 8px);background:var(--rd);color:#fff;font-size:10px;font-weight:700;border-radius:9px;padding:0 5px;min-width:16px;line-height:16px}
+.o{color:var(--wn)}
+.alert{border-left:4px solid var(--rd)}
+.bar{height:8px;background:var(--bg);border:1px solid var(--bd);border-radius:5px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%}
+.chart{display:flex;gap:6px;height:140px;align-items:stretch}
+.chart>div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:3px;font-size:11px;color:var(--mu)}
+.chart .b{width:100%;background:linear-gradient(180deg,#00A8E8,#087DE0);border-radius:5px 5px 0 0}
+.two{display:block}
+@media (max-width:420px){nav button{font-size:10.5px}.dot{left:calc(50% + 6px)}}
+@media (min-width:900px){.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.two>.card{margin:10px 0}.dot{position:static;margin-left:auto}}
+footer{width:100%;max-width:760px;margin:0 auto;padding:0 14px 18px}
+footer .in{border-top:1px solid var(--bd);padding:16px 0 2px;text-align:center;font-size:12.5px;line-height:1.7;color:var(--mu)}
+footer strong{color:var(--tx);letter-spacing:.09em;font-weight:700}
+footer .c{font-size:11.5px;opacity:.9}
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+main{flex:1 0 auto;width:100%}
+@media (min-width:900px){footer{max-width:1100px;padding:0 32px 24px}}
+@media (min-width:1300px){footer{max-width:1240px}}
+
+/* ---- brand redesign ---- */
+body{background:radial-gradient(900px 420px at 100% -8%,rgba(0,168,232,.12),transparent 60%),radial-gradient(700px 420px at -10% 108%,rgba(8,125,224,.10),transparent 60%),var(--bg);background-attachment:fixed}
+header{display:flex;align-items:center;gap:12px;padding:16px 16px 22px;background:linear-gradient(135deg,#071F45 0%,#0b3b7e 62%,#087DE0 135%);color:#fff;border-radius:0 0 24px 24px;box-shadow:0 8px 24px rgba(7,31,69,.25)}
+h1{color:#fff;font-size:21px;line-height:1.1}h1 span{color:#00A8E8}
+.sub{color:#b4cae8}
+.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#00A8E8,#087DE0);display:grid;place-items:center;flex:none;box-shadow:0 4px 12px rgba(0,168,232,.45)}.logo svg{width:22px;height:26px}
+main{padding-top:16px}
+.card{box-shadow:0 6px 18px rgba(7,31,69,.07)}
+h2::before{content:"";display:inline-block;width:4px;height:16px;border-radius:2px;background:linear-gradient(var(--ac),var(--pr));margin-right:9px;vertical-align:-2px}
+.stat{position:relative;overflow:hidden;padding-left:16px}.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--ac),var(--pr))}
+nav i{display:flex;justify-content:center}
+.hero{position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 12px;padding:20px 18px;border-radius:20px;color:#fff;background:linear-gradient(135deg,#071F45 0%,#0a4a9c 55%,#00A8E8 130%);box-shadow:0 12px 28px rgba(8,125,224,.28)}
+.hero::before{content:"";position:absolute;right:-50px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,168,232,.55),transparent 70%)}
+.hero::after{content:"";position:absolute;left:-40px;bottom:-70px;width:180px;height:180px;border-radius:50%;border:26px solid rgba(255,255,255,.06)}
+.ht{position:relative;z-index:1;min-width:0}
+.hg{font-size:13px;opacity:.85;margin-top:12px}.hv{font-size:30px;font-weight:800;line-height:1.15;margin:2px 0 6px}.hs{font-size:12.5px;opacity:.8}
+.eggs{position:relative;z-index:1;overflow:visible;width:130px;height:100px;flex:none;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
+.sig{display:none}
+@media (max-width:420px){.eggs{width:96px;height:74px}.hv{font-size:26px}}
+@media (min-width:900px){
+header{background:none;box-shadow:none;border-radius:0;padding:26px 18px 10px;align-items:center}
+header h1{font-size:19px;white-space:nowrap}header .sub{display:none}
+.chart{height:200px}
+nav{background:linear-gradient(180deg,#071F45 0%,#0a2f66 70%,#0b3b7e 100%);border-right:0;box-shadow:6px 0 24px rgba(7,31,69,.18)}
+nav button{color:rgba(255,255,255,.72)}
+nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+nav button.on{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 3px 0 0 #00A8E8}
+nav i{display:inline-flex}
+.dot{background:#00A8E8;color:#071F45}
+.sig{display:block;position:fixed;left:0;bottom:0;width:220px;z-index:3;padding:16px 18px 20px;border-top:1px solid rgba(255,255,255,.12);color:#9db5d6;font-size:11.5px;line-height:1.55}
+.sig .by{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.sig .nm{color:#fff;font-weight:800;letter-spacing:.1em;font-size:14px;margin:2px 0 6px}
+.sig .c{opacity:.85}
+footer{display:none}
+main{padding-top:28px}
+.hero{padding:26px 28px}.hv{font-size:38px}.eggs{width:190px;height:146px}
+}
+</style>
+</head>
+<body>
+<header><div class="logo"><svg viewBox="-34 -40 68 80" aria-hidden="true"><path fill="#fff" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><ellipse cx="-10" cy="-14" rx="4" ry="9" fill="#087DE0" opacity=".25" transform="rotate(18 -10 -14)"/></svg></div><div><h1>Javaid <span>Traders</span></h1><div class="sub">Egg trading records &middot; Desi &amp; Farmy</div></div></header>
+<main id="app"></main>
+<footer><div class="in"><div>Developed by <strong>ASQENOVA LABS</strong></div><div class="c">&copy; 2026 ASQENOVA LABS. All rights reserved.</div></div></footer>
+<nav id="nav"></nav>
+<aside class="sig"><div class="by">Developed by</div><div class="nm">ASQENOVA LABS</div><div class="c">&copy; 2026 ASQENOVA LABS.<br>All rights reserved.</div></aside>
+<script>
+var S={products:[],buys:[],sells:[]};
+try{var raw=localStorage.getItem("jt_data");if(raw)S=JSON.parse(raw)}catch(e){}
+if(!S.set)S.set={days:5};
+function save(){try{localStorage.setItem("jt_data",JSON.stringify(S))}catch(e){}}
+var U={piece:1,dozen:12,tray:30},UL={piece:"piece",dozen:"dozen",tray:"tray (30)"};
+var view="home",range="7",from="",to="",cust=null,pend=null,draft={};
+var IC=function(p){return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'};
+var TABS=[["home",IC('<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>'),"Home"],["dash",IC('<path d="M5 20V11M12 20V4M19 20v-6"/><path d="M2 20h20"/>'),"Revenue"],["buy",IC('<path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 20h16"/>'),"Buy"],["sell",IC('<path d="M12 17V5M7 10l5-5 5 5"/><path d="M4 20h16"/>'),"Sell"],["cust",IC('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14c2.8 0 4.5 1.8 4.5 4.5"/>'),"Customers"],["prod",IC('<path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/>'),"Stock"]];
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function today(d){d=d||new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function money(n){return "Rs "+Math.round(n).toLocaleString("en-US")}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function amt(t){return t.qty*t.rate}
+function pname(id){var p=S.products.find(function(x){return x.id==id});return p?p.name+" \u00B7 "+p.type+" \u00B7 "+p.size:"Deleted product"}
+function eggs(t){return t.qty*U[t.unit]}
+function key(n){return n.trim().toLowerCase()}
+function fdate(d){var p=d.split("-");return p[2]+"/"+p[1]+"/"+p[0]}
+function go(v){view=v;cust=null;pend=null;render()}
+function render(){
+  var NA=alerts().length;document.getElementById("nav").innerHTML=TABS.map(function(t){return '<button class="'+(view==t[0]?"on":"")+'" onclick="go(\''+t[0]+'\')"><i>'+t[1]+'</i>'+t[2]+(t[0]=='home'&&NA?'<b class="dot">'+NA+'</b>':'')+'</button>'}).join("");
+  var h=view=="home"?vHome():view=="dash"?vDash():view=="buy"?vTrade("buy"):view=="sell"?vTrade("sell"):view=="cust"?(cust?vCustDetail():vCust()):vProd();
+  document.getElementById("app").innerHTML=(view=="buy"||view=="sell")?'<div class="cols">'+h+'</div>':h;
+}
+/* ---------- Smart stock assistant ---------- */
+var BC={r:'var(--rd)',o:'var(--wn)',g:'var(--gr)',m:'var(--mu)'};
+function unitOpts(sel){return Object.keys(UL).map(function(u){return '<option value="'+u+'"'+(u==sel?' selected':'')+'>'+UL[u]+'</option>'}).join('')}
+function stockOf(id){var p=S.products.find(function(x){return x.id==id}),s=p&&p.open?p.open:0;S.buys.forEach(function(t){if(t.pid==id)s+=eggs(t)});S.sells.forEach(function(t){if(t.pid==id)s-=eggs(t)});return s}
+function fq(e){var n=Math.abs(e),g=e<0?'-':'';return n>=30?g+(n/30).toFixed(1).replace('.0','')+' trays ('+g+n.toLocaleString('en-US')+' eggs)':g+n+' eggs'}
+function perDay(a){return a>=30?(a/30).toFixed(1).replace('.0','')+' trays':Math.round(a)+' eggs'}
+function dayDiff(a,b){return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/864e5)}
+function forecast(id){
+  var ts=S.sells.filter(function(t){return t.pid==id});if(!ts.length)return null;
+  var start=today(new Date(Date.now()-13*864e5)),first=ts.reduce(function(m,t){return t.date<m?t.date:m},'9999-99-99');
+  var sum=ts.filter(function(t){return t.date>=start}).reduce(function(a,t){return a+eggs(t)},0);if(!sum)return null;
+  var avg=sum/Math.min(14,Math.max(1,dayDiff(first,today())+1)),st=stockOf(id);
+  return{avg:avg,days:st/avg,need:Math.ceil((avg*10-st)/30)};
+}
+function status(id){
+  var st=stockOf(id),f=forecast(id),A=S.set.days,o={f:f,st:st};
+  if(st<0){o.lvl=3;o.c='r';o.t='Negative stock';return o}
+  if(st==0&&(f||S.sells.some(function(t){return t.pid==id}))){o.lvl=3;o.c='r';o.t='Out of stock';return o}
+  if(!f){o.lvl=0;o.c='m';o.t=st>0?'No recent sales':'No stock yet';return o}
+  if(f.days<2){o.lvl=3;o.c='r';o.t='Under 2 days left';return o}
+  if(f.days<=A){o.lvl=2;o.c='o';o.t='About '+Math.floor(f.days)+' days left';return o}
+  o.lvl=0;o.c='g';o.t='~'+Math.floor(f.days)+' days of stock';return o;
+}
+function barPct(s){return s.st<=0?2:s.f?Math.max(4,Math.min(100,s.f.days/(S.set.days*3)*100)):50}
+function alerts(){var A=[];S.products.forEach(function(p){var s=status(p.id);if(s.lvl>=1)A.push({p:p,s:s})});return A.sort(function(a,b){return b.s.lvl-a.s.lvl})}
+function amsg(a){
+  var s=a.s,f=s.f,n='<strong>'+esc(pname(a.p.id))+'</strong>';
+  if(s.st<0)return n+': sales are '+fq(-s.st)+' more than recorded purchases. Add opening stock or check your entries.';
+  var h=s.st==0?n+' is <strong>out of stock</strong>.':n+' will run out in about <strong>'+Math.max(1,Math.round(f.days))+' day(s)</strong> (around '+fdate(today(new Date(Date.now()+f.days*864e5)))+'). Only '+fq(s.st)+' left.';
+  if(f)h+=' You sell about '+perDay(f.avg)+' per day.'+(f.need>0?' Suggested order: <strong>'+f.need+' trays</strong> to cover the next 10 days.':'');
+  return h;
+}
+/* ---------- Home dashboard ---------- */
+var EGGS='<svg class="eggs" viewBox="0 0 130 100" aria-hidden="true"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#bfe6fb"/></linearGradient></defs><g fill="url(#eg)"><path opacity=".45" transform="translate(36 60) rotate(-18)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><path opacity=".7" transform="translate(94 62) rotate(16)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><path transform="translate(65 46)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/></g><ellipse cx="55" cy="30" rx="5" ry="10" fill="#fff" opacity=".6" transform="rotate(20 55 30)"/></svg>';
+function hero(a,b,c){
+  var d=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  return '<div class="hero"><div class="ht"><div class="hs">'+d+'</div><div class="hg">'+a+'</div><div class="hv">'+b+'</div><div class="hs">'+c+'</div></div>'+EGGS+'</div>';
+}
+function vHome(){
+  if(!S.products.length)return hero('Welcome','Javaid Traders','Track buying, selling and stock in one place')+'<div class="card"><h2>Get started in 3 steps</h2><div class="m" style="line-height:1.9">1. Open <strong>Stock</strong> and add your eggs (type, size, opening stock)<br>2. Record purchases in <strong>Buy</strong><br>3. Record sales in <strong>Sell</strong><br>Your dashboard, stock alerts and revenue fill in automatically.</div><button onclick="go(&#39;prod&#39;)">Add first product</button></div>';
+  var td=today(),ms=td.slice(0,8)+'01',sm=function(L,f){return L.filter(f).reduce(function(a,t){return a+amt(t)},0)};
+  var sd=sm(S.sells,function(t){return t.date==td}),bd=sm(S.buys,function(t){return t.date==td}),sM=sm(S.sells,function(t){return t.date>=ms}),bM=sm(S.buys,function(t){return t.date>=ms});
+  var al=alerts(),h=hero('Sales today',money(sd),'Month net '+money(sM-bM)+' · '+S.sells.filter(function(t){return t.date==td}).length+' sale(s) today');
+  h+=al.length?'<div class="card alert"><h2>⚠ Stock alerts ('+al.length+')</h2>'+al.map(function(a){return '<div class="item"><div>'+amsg(a)+'</div></div>'}).join('')+'</div>':'<div class="card"><strong class="g">✓ Stock looks healthy.</strong> <span class="m">No product is about to run out.</span></div>';
+  h+='<div class="card"><div class="grid"><div class="stat"><div class="m">Today sales</div><div class="v g">'+money(sd)+'</div></div><div class="stat"><div class="m">Today purchases</div><div class="v r">'+money(bd)+'</div></div><div class="stat"><div class="m">This month sales</div><div class="v g">'+money(sM)+'</div></div><div class="stat"><div class="m">Month net (sales − buys)</div><div class="v '+(sM-bM>=0?'g':'r')+'">'+money(sM-bM)+'</div></div></div></div>';
+  var days=[];for(var i=6;i>=0;i--){var d=today(new Date(Date.now()-i*864e5));days.push({d:d,v:sm(S.sells,function(t){return t.date==d})})}
+  var mx=Math.max.apply(null,days.map(function(x){return x.v}))||1,DN=['Su','Mo','Tu','We','Th','Fr','Sa'];
+  var chart='<div class="card"><h2>Sales, last 7 days</h2><div class="chart">'+days.map(function(x){return '<div><span>'+(x.v>=1000?(x.v/1000).toFixed(1).replace('.0','')+'k':Math.round(x.v)||'')+'</span><div class="b" style="height:'+Math.max(3,x.v/mx*95)+'px"></div><span>'+DN[new Date(x.d+'T00:00:00').getDay()]+'</span></div>'}).join('')+'</div></div>';
+  var mxs=Math.max.apply(null,S.products.map(function(p){return Math.max(0,stockOf(p.id))}))||1;
+  var stock='<div class="card"><h2>Current stock <button class="s" style="float:right" onclick="go(&#39;prod&#39;)">View all</button></h2>'+S.products.map(function(p){var s=status(p.id);return '<div style="margin:12px 0"><div class="item" style="border:0;padding:0"><div><b>'+esc(pname(p.id))+'</b><span class="m '+s.c+'">'+s.t+'</span></div><div class="amt">'+fq(s.st)+'</div></div><div class="bar"><i style="width:'+barPct(s)+'%;background:'+BC[s.c]+'"></i></div></div>'}).join('')+'<label>Alert me when stock is below this many days of sales</label><input type="number" min="1" value="'+S.set.days+'" onchange="S.set.days=Math.max(1,+this.value||5);save();render()"></div>';
+  h+='<div class="two">'+chart+stock+'</div>';
+  var st30=today(new Date(Date.now()-29*864e5)),m={};
+  S.sells.filter(function(t){return t.date>=st30}).forEach(function(t){var k=key(t.who);m[k]=m[k]||{n:t.who,k:k,v:0};m[k].v+=amt(t)});
+  var top=Object.keys(m).map(function(k){return m[k]}).sort(function(a,b){return b.v-a.v}).slice(0,5);
+  var tc='<div class="card"><h2>Top customers (30 days)</h2>'+(top.length?top.map(function(x){return '<div class="item" style="cursor:pointer" onclick="view=&#39;cust&#39;;openCust(&#39;'+encodeURIComponent(x.k)+'&#39;)"><b>'+esc(x.n)+'</b><div class="amt g">'+money(x.v)+'</div></div>'}).join(''):'<div class="empty">No sales yet.</div>')+'</div>';
+  var rc=S.sells.map(function(t){return{t:t,k:'sell'}}).concat(S.buys.map(function(t){return{t:t,k:'buy'}})).sort(function(a,b){return b.t.date.localeCompare(a.t.date)||b.t.id.localeCompare(a.t.id)}).slice(0,6);
+  var ra='<div class="card"><h2>Recent activity</h2>'+(rc.length?rc.map(function(x){return '<div class="item"><div><b><span class="tag" style="margin:0 6px 0 0">'+(x.k=='sell'?'SOLD':'BOUGHT')+'</span>'+esc(x.t.who)+'</b><span class="m">'+fdate(x.t.date)+' · '+esc(pname(x.t.pid))+'</span></div><div class="amt '+(x.k=='buy'?'r':'g')+'">'+money(amt(x.t))+'</div></div>'}).join(''):'<div class="empty">Nothing recorded yet.</div>')+'</div>';
+  return h+'<div class="two">'+tc+ra+'</div>';
+}
+/* ---------- Products ---------- */
+function costOf(id){var c=0,e=0;S.buys.forEach(function(t){if(t.pid==id){c+=amt(t);e+=eggs(t)}});return e?c/e:0}
+function vProd(){
+  var P=S.products,tot=0,val=0,low=0,mxs=1;
+  P.forEach(function(p){var st=Math.max(0,stockOf(p.id));tot+=st;val+=st*costOf(p.id);mxs=Math.max(mxs,st);if(status(p.id).lvl>=1)low++});
+  var h='<div class="card"><div class="grid"><div class="stat"><div class="m">Total stock in hand</div><div class="v">'+fq(tot)+'</div></div><div class="stat"><div class="m">Est. value (avg buy rate)</div><div class="v">'+money(val)+'</div></div><div class="stat"><div class="m">Products</div><div class="v">'+P.length+'</div></div><div class="stat"><div class="m">Running low / out</div><div class="v '+(low?'r':'g')+'">'+low+'</div></div></div></div>';
+  h+='<div class="cols"><div class="card"><h2>Stock in hand</h2>';
+  if(!P.length)h+='<div class="empty">No products yet. Add one using the form.</div>';
+  P.forEach(function(p){
+    var st=status(p.id),bo=0,so=0;
+    S.buys.forEach(function(t){if(t.pid==p.id)bo+=eggs(t)});S.sells.forEach(function(t){if(t.pid==p.id)so+=eggs(t)});
+    var used=bo+so>0;
+    h+='<div style="padding:12px 0;border-top:1px solid var(--bd)"><div class="item" style="border:0;padding:0"><div><b>'+esc(p.name)+' · '+esc(p.type)+' · '+esc(p.size)+'</b><span class="m '+st.c+'">'+st.t+'</span></div><div class="amt" style="font-size:17px">'+fq(st.st)+'</div></div>'+
+    '<div class="bar"><i style="width:'+barPct(st)+'%;background:'+BC[st.c]+'"></i></div>'+
+    '<div class="m" style="margin-top:6px">Opening '+fq(p.open||0)+' + Bought '+fq(bo)+' − Sold '+fq(so)+'</div>'+
+    (used?'':'<div style="margin-top:8px">'+delBtn('prod',p.id)+'</div>')+'</div>';
+  });
+  h+='</div><div class="card"><h2>Add product</h2><label>Product name</label><input id="pn" placeholder="e.g. Eggs" value="Eggs">'+
+  '<div class="row"><div><label>Type</label><select id="pt"><option>Desi</option><option>Farmy</option></select></div>'+
+  '<div><label>Size</label><select id="ps"><option>Small</option><option selected>Medium</option><option>Large</option></select></div></div>'+
+  '<label>Opening stock already in shop (optional)</label><div class="row"><input type="number" id="po" inputmode="decimal" min="0" placeholder="0"><select id="pu">'+unitOpts('tray')+'</select></div>'+
+  '<button onclick="addProd()">Add product</button></div></div>';
+  return h;
+}
+function addProd(){
+  var n=document.getElementById("pn").value.trim();if(!n)return alert("Enter a product name");
+  var t=document.getElementById("pt").value,s=document.getElementById("ps").value;
+  if(S.products.some(function(p){return key(p.name)==key(n)&&p.type==t&&p.size==s}))return alert("This product already exists");
+  S.products.push({id:uid(),name:n,type:t,size:s,open:(+document.getElementById('po').value||0)*U[document.getElementById('pu').value]});save();render();
+}
+/* ---------- Buy / Sell ---------- */
+function vTrade(k){
+  var buy=k=="buy",L=buy?S[("buys")]:S.sells,d=draft[k]||{};
+  var h='<div class="card"><h2>'+(buy?"Add purchase":"Add sale")+'</h2>';
+  if(!S.products.length)return h+'<div class="empty">Add a product first in the Products tab.</div></div>';
+  var names={};S.buys.concat(S.sells).forEach(function(t){names[key(t.who)]=t.who});
+  h+='<label>Date</label><input type="date" id="f_date" value="'+(d.date||today())+'">'+
+  '<label>Product</label><select id="f_pid" onchange="tot()">'+S.products.map(function(p){return '<option value="'+p.id+'"'+(d.pid==p.id?" selected":"")+'>'+esc(pname(p.id))+'</option>'}).join("")+'</select>'+
+  '<label>'+(buy?"Bought from (supplier)":"Customer name")+'</label><input id="f_who" list="dl" placeholder="Name" value="'+esc(d.who||"")+'"><datalist id="dl">'+Object.keys(names).map(function(x){return '<option value="'+esc(names[x])+'">'}).join("")+'</datalist>'+
+  '<div class="row"><div><label>Quantity</label><input type="number" id="f_qty" inputmode="decimal" min="0" oninput="tot()"></div>'+
+  '<div><label>Unit</label><select id="f_unit" onchange="tot()">'+Object.keys(UL).map(function(u){return '<option value="'+u+'"'+((d.unit||"dozen")==u?" selected":"")+'>'+UL[u]+'</option>'}).join("")+'</select></div></div>'+
+  '<label>'+(buy?"Buying":"Selling")+' rate (Rs per unit)</label><input type="number" id="f_rate" inputmode="decimal" min="0" oninput="tot()">'+
+  '<label>Vehicle number</label><input id="f_veh" placeholder="e.g. LEA-1234" value="'+esc(d.veh||"")+'">'+
+  '<div class="tot" id="tot">Total: Rs 0</div><button onclick="addTrade(\''+k+'\')">Save '+(buy?"purchase":"sale")+'</button></div>';
+  h+='<div class="card"><h2>'+(buy?"Recent purchases":"Recent sales")+'</h2>';
+  if(!L.length)h+='<div class="empty">Nothing recorded yet.</div>';
+  L.slice().sort(function(a,b){return b.date<a.date?-1:b.date>a.date?1:0}).slice(0,30).forEach(function(t){h+=row(t,k)});
+  return h+'</div>';
+}
+function row(t,k,showWho){
+  return '<div class="item"><div><b>'+esc(pname(t.pid))+'</b><span class="m">'+fdate(t.date)+' \u00B7 '+(showWho===false?"":esc(t.who)+" \u00B7 ")+t.qty+" "+t.unit+(t.qty!=1&&t.unit!="dozen"?"s":"")+' @ Rs '+t.rate+(t.veh?" \u00B7 \u{1F69A} "+esc(t.veh):"")+'</span><div style="margin-top:6px">'+delBtn(k,t.id)+'</div></div><div class="amt '+(k=="buy"?"r":"g")+'">'+money(amt(t))+'</div></div>';
+}
+function tot(){
+  var q=+document.getElementById("f_qty").value||0,r=+document.getElementById("f_rate").value||0;
+  var w='';if(view=='sell'){var pid=document.getElementById('f_pid').value,u=document.getElementById('f_unit').value,st=stockOf(pid);if(q*U[u]>st)w='<div class="r" style="font-size:13px;font-weight:500">⚠ Only '+fq(st)+' in stock for this product</div>'}
+  document.getElementById("tot").innerHTML="Total: "+money(q*r)+w;
+}
+function addTrade(k){
+  var g=function(i){return document.getElementById(i).value.trim()};
+  var t={id:uid(),date:g("f_date"),pid:g("f_pid"),who:g("f_who"),qty:+g("f_qty"),unit:g("f_unit"),rate:+g("f_rate"),veh:g("f_veh")};
+  if(!t.date||!t.who||!(t.qty>0)||!(t.rate>=0)||g("f_rate")==="")return alert("Please fill date, name, quantity and rate");
+  S[k=="buy"?"buys":"sells"].push(t);save();draft[k]={date:t.date,pid:t.pid,unit:t.unit};render();
+}
+/* ---------- delete (two-tap) ---------- */
+function delBtn(k,id){var on=pend==k+id;return '<button class="s red" onclick="del(\''+k+'\',\''+id+'\')">'+(on?"Tap again to delete":"Delete")+'</button>'}
+function del(k,id){
+  if(pend!=k+id){pend=k+id;render();return}
+  var m={buy:"buys",sell:"sells",prod:"products"}[k];
+  S[m]=S[m].filter(function(x){return x.id!=id});pend=null;save();render();
+}
+/* ---------- Customers ---------- */
+function parties(){
+  var m={};
+  S.sells.forEach(function(t){var x=m[key(t.who)]=m[key(t.who)]||{name:t.who,sold:0,bought:0,n:0};x.sold+=amt(t);x.n++});
+  S.buys.forEach(function(t){var x=m[key(t.who)]=m[key(t.who)]||{name:t.who,sold:0,bought:0,n:0};x.bought+=amt(t);x.n++});
+  return Object.keys(m).map(function(k){return m[k]}).sort(function(a,b){return a.name.localeCompare(b.name)});
+}
+function vCust(){
+  var P=parties(),h='<div class="card"><h2>Customers &amp; suppliers ('+P.length+')</h2>';
+  if(!P.length)h+='<div class="empty">Customers appear here automatically once you record a purchase or sale.</div>';
+  P.forEach(function(p){
+    h+='<div class="item" style="cursor:pointer" onclick="openCust(\''+encodeURIComponent(key(p.name))+'\')"><div><b>'+esc(p.name)+'</b><span class="m">'+p.n+' transaction'+(p.n==1?"":"s")+
+    (p.sold?'<span class="tag">Customer</span>':'')+(p.bought?'<span class="tag">Supplier</span>':'')+'</span></div><div class="amt m">\u203A</div></div>';
+  });
+  return h+'</div>';
+}
+function openCust(k){cust=decodeURIComponent(k);pend=null;render();window.scrollTo(0,0)}
+function vCustDetail(){
+  var S1=S.sells.filter(function(t){return key(t.who)==cust}),B1=S.buys.filter(function(t){return key(t.who)==cust});
+  var nm=(S1[0]||B1[0]||{who:cust}).who,ts=S1.reduce(function(a,t){return a+amt(t)},0),tb=B1.reduce(function(a,t){return a+amt(t)},0);
+  var h='<a class="back" onclick="go(\'cust\')">\u2039 All customers</a><div class="card"><h2>'+esc(nm)+'</h2><div class="grid">'+
+  '<div class="stat"><div class="m">Sold to them</div><div class="v g">'+money(ts)+'</div></div><div class="stat"><div class="m">Bought from them</div><div class="v r">'+money(tb)+'</div></div></div></div>';
+  var all=S1.map(function(t){return{t:t,k:"sell"}}).concat(B1.map(function(t){return{t:t,k:"buy"}})).sort(function(a,b){return b.t.date<a.t.date?-1:b.t.date>a.t.date?1:0});
+  h+='<div class="card"><h2>Order history</h2>';
+  all.forEach(function(x){h+=row(x.t,x.k,false).replace('<b>','<b><span class="tag" style="margin:0 6px 0 0">'+(x.k=="sell"?"SOLD":"BOUGHT")+'</span>')});
+  return h+'</div>';
+}
+/* ---------- Revenue ---------- */
+function inRange(d){
+  var f,t=today();
+  if(range=="custom"){f=from||"0000-00-00";t=to||"9999-99-99"}
+  else{var n=range=="1"?0:+range-1;f=today(new Date(Date.now()-n*864e5))}
+  return d>=f&&d<=t;
+}
+function vDash(){
+  var R=[["1","Today"],["7","7 days"],["30","30 days"],["365","1 year"],["custom","Custom"]];
+  var h='<div class="chips">'+R.map(function(r){return '<button class="chip'+(range==r[0]?" on":"")+'" onclick="range=\''+r[0]+'\';render()">'+r[1]+'</button>'}).join("")+'</div>';
+  if(range=="custom")h+='<div class="row"><div><label>From</label><input type="date" value="'+from+'" onchange="from=this.value;render()"></div><div><label>To</label><input type="date" value="'+to+'" onchange="to=this.value;render()"></div></div>';
+  var s=S.sells.filter(function(t){return inRange(t.date)}),b=S.buys.filter(function(t){return inRange(t.date)});
+  var rev=s.reduce(function(a,t){return a+amt(t)},0),cost=b.reduce(function(a,t){return a+amt(t)},0),
+  es=s.reduce(function(a,t){return a+eggs(t)},0),eb=b.reduce(function(a,t){return a+eggs(t)},0),pr=rev-cost;
+  h+='<div class="card"><div class="grid"><div class="stat"><div class="m">Revenue (sales)</div><div class="v g">'+money(rev)+'</div></div>'+
+  '<div class="stat"><div class="m">Purchases</div><div class="v r">'+money(cost)+'</div></div>'+
+  '<div class="stat"><div class="m">Net (sales \u2212 purchases)</div><div class="v '+(pr>=0?"g":"r")+'">'+money(pr)+'</div></div>'+
+  '<div class="stat"><div class="m">Eggs sold / bought</div><div class="v">'+es.toLocaleString("en-US")+' / '+eb.toLocaleString("en-US")+'</div></div></div></div>';
+  var by={};s.forEach(function(t){var p=S.products.find(function(x){return x.id==t.pid});var k=p?p.type+" \u00B7 "+p.size:"Deleted";by[k]=(by[k]||0)+amt(t)});
+  h+='<div class="card"><h2>Sales by type &amp; size</h2>';
+  var ks=Object.keys(by).sort();
+  if(!ks.length)h+='<div class="empty">No sales in this period.</div>';
+  ks.forEach(function(k){h+='<div class="item"><b>'+esc(k)+'</b><div class="amt">'+money(by[k])+'</div></div>'});
+  h+='</div><div class="m" style="text-align:center">'+s.length+(s.length==1?' sale':' sales')+' &middot; '+b.length+(b.length==1?' purchase':' purchases')+' in this period</div>';
+  return h;
+}
+render();
+</script>
+</body>
+</html>
