@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Javaid Traders</title>
+<title>Javaid Hussain Dairy Farm</title>
 <style>
 :root{--bg:#f2f7fd;--card:#fff;--tx:#071F45;--mu:#5b6f8e;--bd:#d8e3f1;--pr:#087DE0;--prt:#fff;--ac:#00A8E8;--wn:#d98200;--gr:#16895a;--rd:#d13b3b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#071F45;--card:#0d2b5a;--tx:#ffffff;--mu:#9db5d6;--bd:#1d4378;--pr:#00A8E8;--prt:#071F45;--ac:#00A8E8;--wn:#ffb347;--gr:#3fcb8b;--rd:#ff7a7a;color-scheme:dark}}
@@ -117,10 +117,56 @@ footer{display:none}
 main{padding-top:28px}
 .hero{padding:26px 28px}.hv{font-size:38px}.eggs{width:190px;height:146px}
 }
+
+/* ---- egg animation ---- */
+.eggs{cursor:pointer}
+.eggs g,.eggs .shd{transform-box:fill-box;transform-origin:50% 90%}
+.e1{animation:drop .7s cubic-bezier(.3,1.5,.5,1) .05s both,bobhop 6.5s ease-in-out .8s infinite}
+.e2{animation:drop .7s cubic-bezier(.3,1.5,.5,1) .2s both,bobhop 6.5s ease-in-out 1.1s infinite}
+.e3{animation:drop .8s cubic-bezier(.3,1.5,.5,1) .35s both,rock 4.2s ease-in-out 1.15s infinite}
+.eggs g.sp{transform-origin:50% 50%;animation:spark 2.8s ease-in-out infinite;opacity:0}
+.eggs g.bs{transform-origin:50% 50%;animation:burst .85s cubic-bezier(.2,.8,.3,1) forwards;pointer-events:none}
+.tw{animation:tw 2.6s ease-in-out infinite}
+.shd{animation:shd 4.2s ease-in-out 1.15s infinite}
+.eggs g.wg{transform-origin:50% 90%}
+.wob .wg{animation:wiggle .7s ease-in-out}
+.hz{display:none}.hatching .hz{display:inline}.hatching .e3{visibility:hidden}
+.eggs g.pip{transform-origin:50% 100%;opacity:0}
+.hatching .hzg{animation:hshake 4s linear both}
+.hatching .ck{animation:chick 4s ease-in-out both}
+.hatching .cap{animation:capfly 4s ease-in both}
+.hatching .pip{animation:pipin 4s ease-out both}
+@keyframes drop{0%{transform:translateY(-38px);opacity:0}60%{opacity:1}100%{transform:translateY(0);opacity:1}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes bobhop{0%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}55%{transform:translateY(0)}78%{transform:translateY(0) scale(1.05,.93)}86%{transform:translateY(-18px) rotate(-5deg) scale(.97,1.04)}93%{transform:translateY(0) scale(1.06,.92)}97%{transform:translateY(-2px) scale(.99,1.01)}}
+@keyframes spark{0%,100%{opacity:0;transform:scale(.2) rotate(0)}50%{opacity:.95;transform:scale(1) rotate(45deg)}}
+@keyframes burst{0%{opacity:1;transform:translate(0,0) scale(.3)}70%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1)}}
+@keyframes rock{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-9px) rotate(3deg)}}
+@keyframes hshake{0%{transform:rotate(0)}3%{transform:rotate(-7deg)}6%{transform:rotate(7deg)}9%{transform:rotate(-9deg)}12%{transform:rotate(9deg)}15%{transform:rotate(-6deg)}18%{transform:rotate(5deg)}21%,100%{transform:rotate(0)}}
+@keyframes chick{0%,20%{transform:translateY(26px)}28%{transform:translateY(-14px) scale(1.06,.94)}34%{transform:translateY(-7px)}40%{transform:translateY(-9px) rotate(-9deg)}50%{transform:translateY(-9px) rotate(9deg)}60%{transform:translateY(-9px) rotate(-6deg)}72%{transform:translateY(-9px) rotate(0)}84%,100%{transform:translateY(26px)}}
+@keyframes capfly{0%,19%{transform:none;opacity:1}30%{transform:translate(18px,-30px) rotate(25deg);opacity:1}48%{transform:translate(34px,14px) rotate(70deg);opacity:0}84%{transform:translate(0,-34px) rotate(0);opacity:0}96%,100%{transform:none;opacity:1}}
+@keyframes pipin{0%,26%{opacity:0;transform:scale(.2)}32%{opacity:1;transform:scale(1.15)}38%{transform:scale(1)}64%{opacity:1;transform:scale(1)}72%,100%{opacity:0;transform:scale(.6)}}
+@keyframes tw{0%,100%{opacity:.65}50%{opacity:.15}}
+@keyframes shd{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.82)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){.e1,.e2,.e3,.tw,.shd{animation:none}.eggs g.sp,.eggs g.bs{display:none}.wob .wg{animation:none}.hatching .hzg,.hatching .ck,.hatching .cap,.hatching .pip{animation:none}}
+#lock{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}
+#lock .lk{width:100%;max-width:420px;background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px;box-shadow:0 10px 40px rgba(7,31,69,.18)}
+#lock .lg{font-size:40px;text-align:center;line-height:1}
+#lock h2{margin:8px 0 2px;text-align:center;font-size:20px}
+#lock p{margin:6px 0;color:var(--mu);font-size:14px;text-align:center}
+#lock .did{display:flex;gap:8px;align-items:center;margin:6px 0 4px}
+#lock .did code{flex:1;text-align:center;font:700 16px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:1px;padding:13px 6px;border:1px dashed var(--pr);border-radius:10px;color:var(--tx);background:var(--bg);user-select:all}
+#lock .lkb{padding:12px 16px;border:0;border-radius:10px;background:var(--pr);color:var(--prt);font:inherit;font-weight:700;cursor:pointer;width:auto}
+#lock .lkb.sec{background:transparent;color:var(--pr);border:1px solid var(--pr)}
+#lock .lkb.full{width:100%;margin-top:10px}
+#lock textarea{width:100%;min-height:78px;padding:11px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:13px/1.35 ui-monospace,Menlo,Consolas,monospace;resize:vertical;box-sizing:border-box;margin-top:8px}
+#lock .er{color:var(--rd);font-size:13px;min-height:18px;text-align:center;margin-top:8px}
+#lock .st{font-size:12px;font-weight:700;color:var(--mu);margin-top:16px;text-transform:uppercase;letter-spacing:.5px}
 </style>
 </head>
 <body>
-<header><div class="logo"><svg viewBox="-34 -40 68 80" aria-hidden="true"><path fill="#fff" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><ellipse cx="-10" cy="-14" rx="4" ry="9" fill="#087DE0" opacity=".25" transform="rotate(18 -10 -14)"/></svg></div><div><h1>Javaid <span>Traders</span></h1><div class="sub">Egg trading records &middot; Desi &amp; Farmy</div></div></header>
+<header><div class="logo"><svg viewBox="-34 -40 68 80" aria-hidden="true"><path fill="#fff" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><ellipse cx="-10" cy="-14" rx="4" ry="9" fill="#087DE0" opacity=".25" transform="rotate(18 -10 -14)"/></svg></div><div><h1>Javaid Hussain <span>Dairy Farm</span></h1><div class="sub">Egg trading records &middot; Desi &amp; Farmy</div></div></header>
 <main id="app"></main>
 <footer><div class="in"><div>Developed by <strong>ASQENOVA LABS</strong></div><div class="c">&copy; 2026 ASQENOVA LABS. All rights reserved.</div></div></footer>
 <nav id="nav"></nav>
@@ -182,13 +228,17 @@ function amsg(a){
   return h;
 }
 /* ---------- Home dashboard ---------- */
-var EGGS='<svg class="eggs" viewBox="0 0 130 100" aria-hidden="true"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#bfe6fb"/></linearGradient></defs><g fill="url(#eg)"><path opacity=".45" transform="translate(36 60) rotate(-18)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><path opacity=".7" transform="translate(94 62) rotate(16)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><path transform="translate(65 46)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/></g><ellipse cx="55" cy="30" rx="5" ry="10" fill="#fff" opacity=".6" transform="rotate(20 55 30)"/></svg>';
+var EGGS='<svg class="eggs" viewBox="0 0 130 100" aria-hidden="true" onclick="wob(this)"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#bfe6fb"/></linearGradient><clipPath id="cck"><path d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><rect x="-40" y="-90" width="80" height="90"/></clipPath><clipPath id="ctop"><polygon points="-34,-4 -26,6 -17,-6 -8,6 1,-6 10,6 19,-6 28,6 34,-4 34,-60 -34,-60"/></clipPath><clipPath id="cbot"><polygon points="-34,-4 -26,6 -17,-6 -8,6 1,-6 10,6 19,-6 28,6 34,-4 34,60 -34,60"/></clipPath></defs><ellipse class="shd" cx="65" cy="96" rx="38" ry="4" fill="#000" opacity=".2"/><g class="wg"><g class="e1"><path fill="url(#eg)" opacity=".45" transform="translate(36 60) rotate(-18)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/></g><g class="e2"><path fill="url(#eg)" opacity=".7" transform="translate(94 62) rotate(16)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/></g><g class="e3"><path fill="url(#eg)" transform="translate(65 46)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><ellipse class="tw" cx="55" cy="30" rx="5" ry="10" fill="#fff" opacity=".6" transform="rotate(20 55 30)"/></g><g class="hz" transform="translate(65 46)"><g class="hzg"><g clip-path="url(#cck)"><g class="ck"><circle cx="0" cy="2" r="17" fill="#ffd84a"/><ellipse cx="-6" cy="-6" rx="6" ry="4" fill="#fff" opacity=".3" transform="rotate(-25 -6 -6)"/><path d="M0-15Q-3-22-5-20M0-15Q0-23 1-21M0-15Q4-22 6-19" fill="none" stroke="#f5b800" stroke-width="2" stroke-linecap="round"/><circle cx="-11" cy="6" r="2.8" fill="#ff8fa3" opacity=".6"/><circle cx="11" cy="6" r="2.8" fill="#ff8fa3" opacity=".6"/><circle cx="-6" cy="-1" r="2.4" fill="#1b2433"/><circle cx="6" cy="-1" r="2.4" fill="#1b2433"/><circle cx="-5.2" cy="-1.8" r=".8" fill="#fff"/><circle cx="6.8" cy="-1.8" r=".8" fill="#fff"/><path d="M-4 3.5L4 3.5L0 9.5Z" fill="#ff9a3c" stroke="#ff9a3c" stroke-width="1" stroke-linejoin="round"/></g></g><path fill="url(#eg)" clip-path="url(#cbot)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><g class="cap"><path fill="url(#eg)" clip-path="url(#ctop)" d="M0-38C20-38 31-9 31 9C31 26 17 38 0 38C-17 38-31 26-31 9C-31-9-20-38 0-38Z"/><ellipse cx="-10" cy="-16" rx="5" ry="10" fill="#fff" opacity=".6" transform="rotate(20 -10 -16)"/></g></g></g></g><g class="sp" style="animation-delay:0.2s"><path d="M0-6L1.6-1.6L6 0L1.6 1.6L0 6L-1.6 1.6L-6 0L-1.6-1.6Z" fill="#fff" transform="translate(10 22) scale(1)"/></g><g class="sp" style="animation-delay:1.1s"><path d="M0-6L1.6-1.6L6 0L1.6 1.6L0 6L-1.6 1.6L-6 0L-1.6-1.6Z" fill="#ffe27a" transform="translate(122 18) scale(0.8)"/></g><g class="sp" style="animation-delay:1.9s"><path d="M0-6L1.6-1.6L6 0L1.6 1.6L0 6L-1.6 1.6L-6 0L-1.6-1.6Z" fill="#9fe0ff" transform="translate(118 78) scale(0.7)"/></g><g class="sp" style="animation-delay:2.4s"><path d="M0-6L1.6-1.6L6 0L1.6 1.6L0 6L-1.6 1.6L-6 0L-1.6-1.6Z" fill="#fff" transform="translate(6 70) scale(0.6)"/></g><g class="pip"><rect x="84" y="1" width="32" height="16" rx="8" fill="#fff"/><path d="M92 16L90 22L99 16Z" fill="#fff"/><text x="100" y="12.4" text-anchor="middle" font-size="9.5" font-weight="800" fill="#087DE0" font-family="sans-serif">pip!</text></g></svg>';
+function wob(el){el.classList.remove("wob");void el.getBoundingClientRect();el.classList.add("wob");burst(el);clearTimeout(el._w);el._w=setTimeout(function(){el.classList.remove("wob")},800);hatch(el)}
+function hatch(el){if(!el||el.classList.contains("hatching")||document.hidden)return;if(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)return;el.classList.add("hatching");setTimeout(function(){burst(el)},820);setTimeout(function(){el.classList.remove("hatching")},4050)}
+setTimeout(function(){hatch(document.querySelector(".eggs"))},4500);setInterval(function(){hatch(document.querySelector(".eggs"))},28000);
+function burst(el){if(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)return;var ns="http://www.w3.org/2000/svg",cols=["#fff","#9fe0ff","#ffe27a"];for(var i=0;i<10;i++){var a=Math.PI*2*i/10+Math.random()*.4,r=34+Math.random()*24,g=document.createElementNS(ns,"g"),q=document.createElementNS(ns,"path");g.setAttribute("class","bs");g.style.setProperty("--dx",(Math.cos(a)*r).toFixed(1)+"px");g.style.setProperty("--dy",(Math.sin(a)*r-8).toFixed(1)+"px");q.setAttribute("d","M0-6L1.6-1.6L6 0L1.6 1.6L0 6L-1.6 1.6L-6 0L-1.6-1.6Z");q.setAttribute("fill",cols[i%3]);q.setAttribute("transform","translate(65 46) scale("+(.6+Math.random()*.6).toFixed(2)+")");g.appendChild(q);el.appendChild(g);(function(n){setTimeout(function(){n.remove()},900)})(g)}}
 function hero(a,b,c){
   var d=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   return '<div class="hero"><div class="ht"><div class="hs">'+d+'</div><div class="hg">'+a+'</div><div class="hv">'+b+'</div><div class="hs">'+c+'</div></div>'+EGGS+'</div>';
 }
 function vHome(){
-  if(!S.products.length)return hero('Welcome','Javaid Traders','Track buying, selling and stock in one place')+'<div class="card"><h2>Get started in 3 steps</h2><div class="m" style="line-height:1.9">1. Open <strong>Stock</strong> and add your eggs (type, size, opening stock)<br>2. Record purchases in <strong>Buy</strong><br>3. Record sales in <strong>Sell</strong><br>Your dashboard, stock alerts and revenue fill in automatically.</div><button onclick="go(&#39;prod&#39;)">Add first product</button></div>';
+  if(!S.products.length)return hero('Welcome','Javaid Hussain','Track buying, selling and stock in one place')+'<div class="card"><h2>Get started in 3 steps</h2><div class="m" style="line-height:1.9">1. Open <strong>Stock</strong> and add your eggs (type, size, opening stock)<br>2. Record purchases in <strong>Buy</strong><br>3. Record sales in <strong>Sell</strong><br>Your dashboard, stock alerts and revenue fill in automatically.</div><button onclick="go(&#39;prod&#39;)">Add first product</button></div>';
   var td=today(),ms=td.slice(0,8)+'01',sm=function(L,f){return L.filter(f).reduce(function(a,t){return a+amt(t)},0)};
   var sd=sm(S.sells,function(t){return t.date==td}),bd=sm(S.buys,function(t){return t.date==td}),sM=sm(S.sells,function(t){return t.date>=ms}),bM=sm(S.buys,function(t){return t.date>=ms});
   var al=alerts(),h=hero('Sales today',money(sd),'Month net '+money(sM-bM)+' · '+S.sells.filter(function(t){return t.date==td}).length+' sale(s) today');
@@ -331,7 +381,34 @@ function vDash(){
   h+='</div><div class="m" style="text-align:center">'+s.length+(s.length==1?' sale':' sales')+' &middot; '+b.length+(b.length==1?' purchase':' purchases')+' in this period</div>';
   return h;
 }
-render();
+
+/* ===== Device activation lock ===== */
+var PUB={"kty":"EC","x":"U425Gr59wlw0nhm5Lo3KQNk7I4Ab9PIAkVkmOXIf02w","y":"KvZSKsXOaG66ZjT9xt_mYjd8iAP_Cu3gb9RKU68Qde8","crv":"P-256"},DK="jhdf_dev",AK="jhdf_key";
+function devId(){var d=localStorage.getItem(DK);if(!d||!/^[0-9A-F]{4}(-[0-9A-F]{4}){3}$/.test(d)){var a=new Uint8Array(8);crypto.getRandomValues(a);d=Array.prototype.map.call(a,function(b){return("0"+b.toString(16)).slice(-2)}).join("").toUpperCase().replace(/(.{4})(?=.)/g,"$1-");localStorage.setItem(DK,d)}return d}
+function b64u(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u}
+function verifyKey(key,dev){return Promise.resolve().then(function(){return crypto.subtle.importKey("jwk",PUB,{name:"ECDSA",namedCurve:"P-256"},false,["verify"])}).then(function(k){return crypto.subtle.verify({name:"ECDSA",hash:"SHA-256"},k,b64u(key),new TextEncoder().encode("JHDF1|"+dev))}).catch(function(){return false})}
+function lockUI(go,dev,note){
+  var o=document.createElement("div");o.id="lock";
+  o.innerHTML='<div class="lk"><div class="lg">\uD83E\uDD5A</div><h2>Activate your app</h2><p>This copy is not activated on this device yet.</p>'+
+  (dev?'<div class="st">1. Your Device ID</div><div class="did"><code id="lkd"></code><button class="lkb sec" id="lkc">Copy</button></div><p style="font-size:12px">Send this ID to the developer to get your activation key.</p>'+
+  '<div class="st">2. Activation key</div><textarea id="lkk" placeholder="Paste your activation key here" spellcheck="false" autocomplete="off"></textarea><button class="lkb full" id="lka">Activate</button>':'')+
+  '<div class="er" id="lke"></div></div>';
+  document.body.appendChild(o);
+  var e=o.querySelector("#lke");e.textContent=note||"";
+  if(!dev)return;
+  o.querySelector("#lkd").textContent=dev;
+  o.querySelector("#lkc").onclick=function(){var b=this;(navigator.clipboard?navigator.clipboard.writeText(dev):Promise.reject()).then(function(){b.textContent="Copied!"},function(){var r=document.createRange();r.selectNodeContents(o.querySelector("#lkd"));var sel=getSelection();sel.removeAllRanges();sel.addRange(r);b.textContent="Select & copy"});setTimeout(function(){b.textContent="Copy"},1800)};
+  o.querySelector("#lka").onclick=function(){var k=o.querySelector("#lkk").value.replace(/\s+/g,"");if(!k){e.textContent="Please paste your activation key.";return}
+    verifyKey(k,dev).then(function(ok){if(!ok){e.textContent="Invalid key for this device. Check it and try again.";return}try{localStorage.setItem(AK,k)}catch(x){}o.remove();go()})}
+}
+function gate(go){
+  if(!(window.crypto&&crypto.subtle&&window.TextEncoder)){lockUI(go,"","This browser cannot verify activation. Please open the link in an up-to-date Chrome or Safari.");return}
+  var d;try{d=devId()}catch(e){lockUI(go,"","Browser storage is blocked. Please allow site data and reload.");return}
+  var k=localStorage.getItem(AK);
+  if(!k){lockUI(go,d);return}
+  verifyKey(k,d).then(function(ok){if(ok)go();else{try{localStorage.removeItem(AK)}catch(x){}lockUI(go,d,"Activation is not valid on this device.")}})
+}
+gate(function(){render()});
 </script>
 </body>
 </html>
